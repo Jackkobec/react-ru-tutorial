@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+</head>
+
+<body>
+<!--Создадим div, куда будем рендерить результат работы нашего компонента HelloWorld-->
+<div id='content'><!--Сюда запихнется содержимое нашего компонента по .render--></div>
+
+
+<script type="text/babel">
+    //Наш первый кастомный компонтент на React.js с названием HelloReact
+    var HelloReact = React.createClass({
+        render: function () {//единственная обязательная функция в компоненте реакта
+            return (//возвращает то, что будет отрисовываться на нашей странице
+                    <h1> Hello React.js! </h1>//обычный HTML tag h1
+            );
+        }
+    });
+    /*
+     Отображение нашего компонента в DOM дерево, помещаем в ReactDOM из библиотеки react-dom.js,
+     которая умеет взаимодействовать с реальным DOM деревом
+     */
+    ReactDOM.render(//render - функция отображения
+            <HelloReact />,//Компонент, который нудно отобразить
+        document.getElementById('content')//куда нужно отобразить, мы создали раннее <div id='content'></div>
+    );
+</script>
+
+<div id="content2"></div><!--Сюда будет рендерится компонент с имененм UsingProps-->
+
+<script type="text/babel">
+    var UsingProps = React.createClass({
+        render: function () {
+            //Обращение к this.props по имени, коттрые в .render
+            return <h1> My name is {this.props.name} and I love {this.props.action}! </h1>;
+        }
+    });
+    ReactDOM.render(
+        //К этим полям - name и action делается обращение в компоненте UsingProps
+            <div>
+                <UsingProps name="Jack" action="Java"/>
+                <UsingProps name="Katya" action="football"/>
+                <UsingProps name="Vasya" action="walking"/>
+                <UsingProps name="Ivan" action="swimming"/>
+            </div>,
+        document.getElementById("content2")//куда нужно отобразить, мы создали раннее <div id='content2'></div>
+    );
+</script>
+
+</body>
+</html>
